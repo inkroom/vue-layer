@@ -1,12 +1,15 @@
 var path = require('path')
 var webpack = require('webpack')
 
+
+let entry = process.env.NODE_ENV =='development'?'./src/main.js':'./src/build.js';
+let filename = process.env.NODE_ENV =='development'?'dev.js':'layer.js';
 module.exports = {
-  entry: './src/main.js',
+  entry: entry,
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
-    filename: 'build.js'
+    filename: filename
   },
   module: {
     rules: [
