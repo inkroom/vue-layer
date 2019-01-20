@@ -2,6 +2,8 @@
 
 > 基于vue的layer插件
 
+
+
 ## Build Setup
 
 ``` bash
@@ -15,4 +17,5 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+直接引用dist里的js文件即可使用
+

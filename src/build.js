@@ -1,32 +1,48 @@
 import MsgComponent from './layer/msg';
-
+import LoadingComponent from './layer/loading';
 /**
  * 该方法负责创建对应的模板
  */
 let layer = {
   msg(options) {
-    console.log('build msg');
-    
-    let msg = new this.Msg({
-      el: document.createElement('div'),
-    })
-    //将options的值赋予vue实例
-    for (const key in options) {
-      if (options.hasOwnProperty(key)) {
-        const element = options[key];
-        msg[key] = element;
-      }
-    }
-    document.body.appendChild(msg.$el);
+    this._msg.init(options || {})
   },
   alert(options) {
 
+  },
+  loading(options) {
+    this._loading.init(options || {});
+  },
+  close() {
+    this._msg.show = false;
+    this._loading.show = false;
   }
 }
 
 const temp = {
   install(Vue, options) {
-    layer.Msg = Vue.extend(MsgComponent);
+
+
+    let Msg = Vue.extend(MsgComponent);
+
+    var div = document.createElement('div');
+    document.body.appendChild(div);
+
+    let msg = new Msg({
+      el: div,
+    })
+
+    layer._msg = msg;
+
+    let Loading = Vue.extend(LoadingComponent);
+    div = document.createElement('div');
+    document.body.appendChild(div);
+
+    let loading = new Loading({
+      el: div,
+    })
+
+    layer._loading = loading;
 
     Vue.prototype.$layer = layer;
 
